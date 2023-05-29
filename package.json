@@ -33,7 +33,9 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.9.0",
+    "react-spring": "^9.7.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
@@ -48,6 +50,10 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
-    "vite": "^4.3.2"
+    "react-markdown": "^5.0.3",
+    "react-scripts": "4.0.2",
+    "react-uuid": "^1.0.2",
+    "vite": "^4.3.2",
+    "web-vitals": "^1.1.0"
   }
 }
