@@ -1,0 +1,53 @@
+{
+  "name": "noti",
+  "private": true,
+  "version": "0.0.0",
+  "type": "commonjs",
+  "main": "window.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "electron": "concurrently \"npm run dev\" \"cross-env NODE_ENV=development electron .\"",
+    "electron-build": "vite build && electron-builder"
+  },
+  "build": {
+    "appId": "com.unyocorp.noti",
+    "productName": "noti",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "window.cjs"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^4.0.0",
+    "concurrently": "^8.0.1",
+    "cross-env": "^7.0.3",
+    "electron": "^24.2.0",
+    "electron-builder": "^23.6.0",
+    "electron-reload": "^2.0.0-alpha.1",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "vite": "^4.3.2"
+  }
+}
