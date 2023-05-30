@@ -3,26 +3,29 @@
   "private": true,
   "version": "0.0.0",
   "type": "commonjs",
-  "main": "window.cjs",
+  "main": "./build/electron.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
     "electron": "concurrently \"npm run dev\" \"cross-env NODE_ENV=development electron .\"",
-    "electron-build": "vite build && electron-builder"
+    "electron-build": "vite build && electron-builder",
+    "release-build": "electron-builder"
   },
   "build": {
     "appId": "com.unyocorp.noti",
     "productName": "noti",
+    "forceCodeSigning": false,
     "directories": {
       "output": "build"
     },
     "files": [
       "dist/**/*",
-      "window.cjs"
+      "electron.js"
     ],
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "build/Noti-Logo.ico"
     },
     "mac": {
       "target": "dmg"

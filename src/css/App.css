@@ -27,7 +27,6 @@
 }
 
 /* GLOBAL STYLES */
-
 body,
 .App {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -36,8 +35,6 @@ body,
   height: 100vh;
   overflow: hidden;
   font-size: 16px;
-  background: #232323;
-  color: #f5f5f5; /* Lighter text color for better readability in dark mode */
 }
 
 button {
@@ -48,19 +45,62 @@ button {
   font-size: inherit;
   font-family: inherit;
   cursor: pointer;
-  color: #f5f5f5;
   transition: color 0.3s ease-in-out;
-}
-
-button:hover {
-  color: rgb(82, 82, 82);
 }
 
 .App {
   display: flex;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 10px 30px -10px rgba(255,255,255,0.15); /* Adjusted shadow for dark mode */
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);
+}
+
+/* Light theme styles */
+
+body[data-theme='light'] {
+  background: #f5f5f5;
+  color: #232323;
+}
+
+body[data-theme='light'] .app-sidebar {
+  background-color: #f5f5f5;
+  border-right: 1px solid #ddd;
+}
+
+body[data-theme='light'] .app-sidebar-note:hover {
+  background: #ddd;
+}
+
+body[data-theme='light'] .app-main-note-preview {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+body[data-theme='light'] .settings-modal-content {
+  background-color: #fff;
+}
+
+/* Dark theme styles */
+
+body[data-theme='dark'] {
+  background: #232323;
+  color: #f5f5f5;
+}
+
+body[data-theme='dark'] .app-sidebar {
+  background-color: #232323;
+  border-right: 1px solid #444;
+}
+
+body[data-theme='dark'] .app-sidebar-note:hover {
+  background: #333;
+}
+
+body[data-theme='dark'] .app-main-note-preview {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme='dark'] .settings-modal-content {
+  background-color: #333;
 }
 
 /* SIDEBAR STYLES */
@@ -229,3 +269,28 @@ textarea {
   line-height: 2rem;
   color: #f5f5f5;
 }
+
+.settings-button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px; /* adjust as necessary */
+}
+
+.settings-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings-modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+

@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+// App.js
+import { useEffect, useState, useMemo } from "react";
 import uuid from "react-uuid";
+import { ThemeContext } from './main/ThemeContext';
 import "./css/App.css";
 import Main from "./main/Main";
 import Sidebar from "./sidebar/Sidebar";
@@ -9,10 +11,12 @@ function App() {
     localStorage.notes ? JSON.parse(localStorage.notes) : []
   );
   const [activeNote, setActiveNote] = useState({});
+  const [theme, setTheme] = useState('light');
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
-  }, [notes]);
+    document.body.dataset.theme = theme; // change the dataset attribute for the body
+  }, [notes, theme]);
 
   const onAddNote = () => {
     const newNote = {
@@ -46,17 +50,25 @@ function App() {
     return notes.find(({ id }) => id === activeNote) || {};
   };
 
+  const toggleTheme = () => {
+    setTheme((theme) => (theme === 'light' ? 'dark' : 'light'));
+  };
+
+  const themeValue = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme]);
+
   return (
-    <div className="App">
-      <Sidebar
-        notes={notes}
-        onAddNote={onAddNote}
-        onDeleteNote={onDeleteNote}
-        activeNote={activeNote}
-        setActiveNote={setActiveNote}
-      />
-      <Main activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
-    </div>
+    <ThemeContext.Provider value={themeValue}>
+      <div className="App">
+        <Sidebar
+          notes={notes}
+          onAddNote={onAddNote}
+          onDeleteNote={onDeleteNote}
+          activeNote={activeNote}
+          setActiveNote={setActiveNote}
+        />
+        <Main activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
+      </div>
+    </ThemeContext.Provider>
   );
 }
 

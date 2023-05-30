@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { FaBars, FaPlusCircle, FaTimes, FaTrashAlt } from 'react-icons/fa';
+import { FaBars, FaPlusCircle, FaTimes, FaTrashAlt, FaCog } from 'react-icons/fa';
+import Settings from './Settings';
 
 const Sidebar = ({
   notes,
@@ -9,6 +10,7 @@ const Sidebar = ({
   setActiveNote,
 }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const sortedNotes = notes.sort((a, b) => b.lastModified - a.lastModified);
 
   return (
@@ -26,15 +28,14 @@ const Sidebar = ({
         <div className="app-sidebar-notes">
           {sortedNotes.map(({ id, title, body, lastModified }, i) => (
             <div
-                key={id} // unique key
               className={`app-sidebar-note ${id === activeNote && "active"}`}
               onClick={() => setActiveNote(id)}
             >
               <div className="sidebar-note-title">
                 <strong>{title}</strong>
                 <button onClick={(e) => {
-                    e.stopPropagation(); // stop setActiveNote from being triggered
-                    onDeleteNote(id);
+                  e.stopPropagation(); // stop setActiveNote from being triggered
+                  onDeleteNote(id);
                 }}>
                   <FaTrashAlt/>
                 </button>
@@ -50,6 +51,16 @@ const Sidebar = ({
               </small>
             </div>
           ))}
+        </div>
+      )}
+
+      <button className="settings-button" onClick={() => setSettingsOpen(!settingsOpen)}>
+        <FaCog />
+      </button>
+
+      {settingsOpen && (
+        <div className="settings-modal">
+          <Settings onClose={() => setSettingsOpen(false)}  />
         </div>
       )}
     </div>
